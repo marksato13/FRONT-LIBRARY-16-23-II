@@ -1,0 +1,122 @@
+
+
+<div class="container">
+  <h2>Agregar Libro</h2>
+  <div class="card form-card">
+    <div class="card-body">
+      <form (submit)="agregarLibro()">
+        <div class="row">
+          <div class="col">
+            <div class="form-group">
+              <label for="titulo">Título:</label>
+              <input type="text" id="titulo" [(ngModel)]="nuevoLibro.titulo" name="titulo" class="form-control"
+                required>
+            </div>
+          </div>
+          <div class="colO">
+            <div class="form-group">
+              <label for="fechalan">Fecha de Lanzamiento:</label>
+              <input type="date" id="fechalan" [(ngModel)]="nuevoLibro.fechalan" name="fechalan" class="form-control"
+                required>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col">
+            <div class="form-group">
+              <label for="idioma">Idioma:</label>
+              <input type="text" id="idioma" [(ngModel)]="nuevoLibro.idioma" name="idioma" class="form-control"
+                required>
+
+            </div>
+          </div>
+          <div class="col">
+            <div class="form-group">
+              <label for="paginas">Número de Páginas:</label>
+              <input type="number" id="paginas" [(ngModel)]="nuevoLibro.paginas" name="paginas" class="form-control"
+                required>
+            </div>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="descripcion">Descripción:</label>
+          <textarea id="descripcion" [(ngModel)]="nuevoLibro.descripcion" name="descripcion" class="form-control"
+            required></textarea>
+        </div>
+        <div class="row">
+          <div class="col">
+            <div class="form-group">
+              <label for="portada">Nombre de la Portada:</label>
+              <input type="text" id="portada" [(ngModel)]="nuevoLibro.portada" name="portada" class="form-control"
+                required>
+            </div>
+          </div>
+          <div class="col">
+            <div class="form-group">
+              <label for="autor">Autor:</label>
+              <select id="autor" [(ngModel)]="nuevoLibro.autor" name="autor" class="form-control" required>
+                <option value="0" disabled>Selecciona un autor</option>
+                <option *ngFor="let autor of autores" [value]="autor.id">{{ autor.nombreautor }}</option>
+              </select>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col">
+            <div class="form-group">
+              <label for="editorial">Editorial:</label>
+              <select id="editorial" [(ngModel)]="nuevoLibro.editorial" name="editorial" class="form-control" required>
+                <option value="0" disabled>Selecciona una editorial</option>
+                <option *ngFor="let editorial of editoriales" [value]="editorial.id">{{ editorial.nombreeditorial }}
+                </option>
+              </select>
+            </div>
+          </div>
+          <div class="col">
+            <div class="form-group">
+              <label for="categoria">Categoría:</label>
+              <select id="categoria" [(ngModel)]="nuevoLibro.categoria" name="categoria" class="form-control" required>
+                <option value="0" disabled>Selecciona una categoría</option>
+                <option *ngFor="let categoria of categorias" [value]="categoria.id">{{ categoria.nombrecategoria }}
+                </option>
+              </select>
+            </div>
+          </div>
+        </div>
+        <button type="submit" class="btn btn-primary">Agregar Libro</button>
+        <button type="button" class="btn btn-primary" (click)="editBook()">Editar Libro</button>
+      </form>
+    </div>
+  </div>
+</div>
+
+
+<div class="container">
+  <h2>List of Books</h2>
+  <div class="row">
+    <div *ngFor="let libro of libros" class="col-md-4">
+      <div class="card">
+        <div class="xxx">
+          <div class="card-body">
+            <h5 class="card-title">{{ libro.titulo }}</h5>
+            <p class="card-text">
+              <strong>Fecha:</strong> {{ libro.fechalan }}<br>
+              <strong>Idioma:</strong> {{ libro.idioma }}<br>
+              <strong>Paginas:</strong> {{ libro.paginas }}<br>
+              <strong>Descripcion:</strong> {{ libro.descripcion }}<br>
+              <strong>Portada:</strong> {{ libro.portada }}<br>
+              <strong>Nombre Autor:</strong> {{ libro.autor.nombreautor }}<br>
+              <strong>Editorial:</strong> {{ libro.editorial.nombreeditorial }}<br>
+
+              <strong>Categoria:</strong> {{ libro.categoria.nombrecategoria }}<br>
+
+            </p>
+            <button class="btn btn-danger" (click)="eliminarLibro(libro.id)">Eliminar</button>
+            <button class="btn btn-primary" (click)="cargarDatosLibroParaEdicion(libro.id)">Editar</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+

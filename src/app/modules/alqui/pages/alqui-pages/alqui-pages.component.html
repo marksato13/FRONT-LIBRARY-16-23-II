@@ -1,0 +1,74 @@
+<div class="container">
+    <h2>Sistema de Alquiler de Libros</h2>
+    <div class="card form-card">
+        <div class="card-body">
+            <form (submit)="agregarAlquiler()">
+                <div class="row">
+                    <div class="col">
+                        <div class="form-group">
+                            <label for="fechasa">Título:</label>
+                            <input type="text" id="fechasa" [(ngModel)]="nuevoAlquiler.fechasa" name="fechasa"
+                                class="form-control" required>
+                        </div>
+                    </div>
+                    <div class="colO">
+                        <div class="form-group">
+                            <label for="fechaen">Fecha de Lanzamiento:</label>
+                            <input type="date" id="fechaen" [(ngModel)]="nuevoAlquiler.fechaen" name="fechaen"
+                                class="form-control" required>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <div class="form-group">
+                            <label for="libro">libro:</label>
+                            <select id="libro" [(ngModel)]="nuevoAlquiler.libro" name="libro"
+                                class="form-control" required>
+                                <option value="0" disabled>Selecciona una libro</option>
+                                <option *ngFor="let libro of libros" [value]="libro.id">{{
+                                    libro.titulo }}
+                                </option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="form-group">
+                            <label for="lector">lector:</label>
+                            <select id="lector" [(ngModel)]="nuevoAlquiler.lector" name="lector"
+                                class="form-control" required>
+                                <option value="0" disabled>Selecciona una lector</option>
+                                <option *ngFor="let lector of lectors" [value]="lector.id">{{
+                                    lector.nombre }}
+                                </option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-primary">Agregar Libro</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+<div class="container">
+    <div class="row">
+        <div *ngFor="let alquiler of alquilers" class="col-md-4">
+            <div class="card">
+                <div class="xxx">
+                    <div class="card-body">
+                        <p class="card-text">
+
+                            <strong>Titulo del Libro:</strong> {{ alquiler.libro.titulo }}<br>
+                            <strong>Nombre del Lector:</strong> {{ alquiler.lector.nombre }}<br>
+                            <strong>Fecha:</strong> {{ alquiler.fechasa }}<br>
+                            <strong>Fecha:</strong> {{ alquiler.fechaen }}<br>
+                        </p>
+                        <button class="btn btn-danger" (click)="eliminarAlquiler(alquiler.id)">Eliminar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
